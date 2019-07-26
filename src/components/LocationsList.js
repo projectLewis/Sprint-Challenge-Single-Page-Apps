@@ -8,9 +8,9 @@ const LocationList = () => {
   useEffect(() => {
     axios
       .get("https://rickandmortyapi.com/api/location/")
-      .then(function({ data: { results } }) {
+      .then(({ data: { results } }) => {
         console.log(results);
-        setCharacters(prevlocations => locations);
+        setLocations(prevlocations => results);
       })
       .catch(function(error) {
         console.log(error);
@@ -18,30 +18,22 @@ const LocationList = () => {
   }, []);
 
   return (
-    <section className="character-list grid-view">
-      {/* {locations ? (
+    <section className="location-list grid-view">
+      {locations ? (
         locations.map(location => {
           return (
-            <div style={{ border: "1px solid blue" }} key={character.id}>
-              <img
-                crossOrigin="anonymous"
-                src={character.image}
-                alt={`${character.name}`}
-              />
+            <div style={{ border: "1px solid blue" }} key={location.id}>
+              {location.name}
               <br />
-              {character.name}
+              Planet - {location.dimension}
               <br />
-              {character.species} {character.status}
-              <br />
-              Location: {character.location.name}
-              <br />
-              Episodes: {character.episode.length}
+              {location.residents.length}
             </div>
           );
         })
-      ) : ( */}
-      <h2>Loading...</h2>
-      {/* )} */}
+      ) : (
+        <h2>Loading...</h2>
+      )}
     </section>
   );
 };
