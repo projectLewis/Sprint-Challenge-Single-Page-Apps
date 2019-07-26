@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LocationCard from "./LocationCard";
 
 const LocationList = () => {
   // TODO: Add useState to track data from useEffect
@@ -22,13 +23,12 @@ const LocationList = () => {
       {locations ? (
         locations.map(location => {
           return (
-            <div style={{ border: "1px solid blue" }} key={location.id}>
-              {location.name}
-              <br />
-              Planet - {location.dimension}
-              <br />
-              {location.residents.length}
-            </div>
+            <LocationCard
+              key={location.id}
+              name={location.name}
+              dimension={location.dimension}
+              residents={location.residents.length}
+            />
           );
         })
       ) : (

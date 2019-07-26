@@ -24,6 +24,7 @@ const CharacterList = () => {
         characters.map(character => {
           return (
             <CharacterCard
+              raised
               key={character.id}
               image={character.image}
               name={character.name}
