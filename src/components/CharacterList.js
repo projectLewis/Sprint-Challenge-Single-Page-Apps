@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CharacterCard from "./CharacterCard";
 
-export default function CharacterList() {
+const CharacterList = () => {
   // TODO: Add useState to track data from useEffect
   const [characters, setCharacters] = useState(null);
 
@@ -9,6 +10,7 @@ export default function CharacterList() {
     axios
       .get("https://rickandmortyapi.com/api/character/")
       .then(function({ data: { results } }) {
+        console.log(results);
         setCharacters(prevChars => results);
       })
       .catch(function(error) {
@@ -21,21 +23,15 @@ export default function CharacterList() {
       {characters ? (
         characters.map(character => {
           return (
-            <div style={{ border: "1px solid blue" }} key={character.id}>
-              <img
-                crossOrigin="anonymous"
-                src={character.image}
-                alt={`${character.name}`}
-              />
-              <br />
-              {character.name}
-              <br />
-              {character.species} {character.status}
-              <br />
-              Location: {character.location.name}
-              <br />
-              Episodes: {character.episode.length}
-            </div>
+            <CharacterCard
+              key={character.id}
+              image={character.image}
+              name={character.name}
+              species={character.species}
+              status={character.status}
+              characterLocation={character.location.name}
+              episodeQuantity={character.episode.length}
+            />
           );
         })
       ) : (
@@ -43,4 +39,6 @@ export default function CharacterList() {
       )}
     </section>
   );
-}
+};
+
+export default CharacterList;

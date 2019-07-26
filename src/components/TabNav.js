@@ -35,7 +35,7 @@ const panes = [
   {
     menuItem: (
       <Menu.Item
-        key="characters"
+        key="locations"
         as={Nav}
         to={`/locations`}
         content={locationLabel}
@@ -45,7 +45,7 @@ const panes = [
   {
     menuItem: (
       <Menu.Item
-        key="characters"
+        key="episodes"
         as={Nav}
         to={`/episodes`}
         content={episodeLabel}
